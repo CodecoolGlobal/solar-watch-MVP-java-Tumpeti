@@ -5,11 +5,9 @@ import com.codecool.solarwatch.service.SunriseSunsetService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 
 @RestController
@@ -28,10 +26,7 @@ public class SunriseSunsetController {
         if (date.equals("today")) {
             date = LocalDate.now().toString();
         }
-        System.out.println(date);
-            SunriseSunsetDTO sunriseSunsetDTO = sunriseSunsetService.getSunriseSunset(city, LocalDate.parse(date));
-            System.out.println(sunriseSunsetDTO);
-            return sunriseSunsetDTO;
+        return sunriseSunsetService.getSunriseSunset(city, LocalDate.parse(date));
 //        } catch (InvalidCityNameException exception) {
 //            return exception.getMessage();
 //        } catch (DateTimeException exception) {

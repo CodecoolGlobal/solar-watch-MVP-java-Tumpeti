@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.NoSuchElementException;
+
 @ControllerAdvice
 public class SunriseSunsetControllerAdvice {
 
@@ -13,6 +15,13 @@ public class SunriseSunsetControllerAdvice {
     @ExceptionHandler(InvalidCityNameException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String invalidCityNameExceptionHandler(InvalidCityNameException exception) {
+        return exception.getMessage();
+    }
+
+    @ResponseBody
+    @ExceptionHandler(NoSuchElementException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String noSuchElementExceptionHandler(NoSuchElementException exception) {
         return exception.getMessage();
     }
 
