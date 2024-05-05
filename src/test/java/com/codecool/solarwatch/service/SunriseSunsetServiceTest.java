@@ -9,14 +9,12 @@ import com.codecool.solarwatch.repository.SunriseSunsetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -60,7 +58,6 @@ class SunriseSunsetServiceTest {
         City washington = new City(cityName, latitude, longitude, country, state);
         when(cityRepository.findByNameIgnoreCase(cityName)).thenReturn(Optional.of(washington));
 
-        long id = 1;
         String sunrise = "6:07:33 AM";
         String sunset = "8:04:42 PM";
         SunriseSunset sunriseSunset = new SunriseSunset(date, sunrise, sunset, washington);
