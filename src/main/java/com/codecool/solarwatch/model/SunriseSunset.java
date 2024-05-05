@@ -1,10 +1,74 @@
 package com.codecool.solarwatch.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public record SunriseSunset(String sunrise, String sunset, @JsonProperty("day_length") String dayLength) {
+import java.time.LocalDate;
+
+@Entity
+public class SunriseSunset {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private LocalDate date;
+
+    private String sunrise;
+
+    private String sunset;
+
+    @ManyToOne
+    private City city;
 
 
+    public long getId() {
+        return id;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getSunrise() {
+        return sunrise;
+    }
+
+    public String getSunset() {
+        return sunset;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setSunrise(String sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    public void setSunset(String sunset) {
+        this.sunset = sunset;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "SunriseSunset{" +
+                "id=" + id +
+                ", date=" + date +
+                ", sunrise='" + sunrise + '\'' +
+                ", sunset='" + sunset + '\'' +
+                ", city=" + city +
+                '}';
+    }
 }

@@ -1,6 +1,6 @@
 package com.codecool.solarwatch.controller;
 
-import com.codecool.solarwatch.model.SunriseSunset;
+import com.codecool.solarwatch.model.SunriseSunsetDTO;
 import com.codecool.solarwatch.service.SunriseSunsetService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -24,19 +24,19 @@ public class SunriseSunsetController {
     }
 
     @GetMapping("/sunrisesunset")
-    public ResponseEntity<?> getSunriseAndSunset(@RequestParam String city, @RequestParam(required = false, defaultValue = "today") String date) {
+    public SunriseSunsetDTO getSunriseAndSunset(@RequestParam String city, @RequestParam(required = false, defaultValue = "today") String date) {
         if (date.equals("today")) {
             date = LocalDate.now().toString();
         }
         System.out.println(date);
-        try {
-            SunriseSunset sunriseSunset = sunriseSunsetService.getSunriseSunset(city, LocalDate.parse(date));
-            return ResponseEntity.ok(sunriseSunset);
-        } catch (InvalidCityNameException exception) {
-            return ResponseEntity.badRequest().body(exception.getMessage());
-        } catch (DateTimeException exception) {
-            logger.info("Invalid date format");
-            return ResponseEntity.badRequest().body("Bad Date Time Format");
-        }
+            SunriseSunsetDTO sunriseSunsetDTO = sunriseSunsetService.getSunriseSunset(city, LocalDate.parse(date));
+            System.out.println(sunriseSunsetDTO);
+            return sunriseSunsetDTO;
+//        } catch (InvalidCityNameException exception) {
+//            return exception.getMessage();
+//        } catch (DateTimeException exception) {
+//            logger.info("Invalid date format");
+//            return ResponseEntity.badRequest().body("Bad Date Time Format");
+
     }
 }
