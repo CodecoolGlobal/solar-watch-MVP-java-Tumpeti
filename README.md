@@ -1,6 +1,6 @@
-# SolarWatch - Database
+# SolarWatch
 
-Welcome to SolarWatch, a Spring Boot Web API project that provides sunrise and sunset times for a given city on a given date, in local or UTC times. This project aims to build up the application from the ground zero, implementing the minimal viable product (MVP) and then expanding its functionality in the future.
+Welcome to SolarWatch, a Spring Boot Web API project that provides sunrise and sunset times for a given city on a given date, in UTC times. This project aims to build up the application from the ground zero, implementing the minimal viable product (MVP) and then expanding its functionality in the future.
 
 ## Features
 
@@ -24,7 +24,7 @@ Welcome to SolarWatch, a Spring Boot Web API project that provides sunrise and s
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/yourusername/solar-watch.git
+   git clone https://github.com/CodecoolGlobal/solar-watch-MVP-java-Tumpeti.git
    ```
 
 2. Navigate to the project directory:
@@ -57,6 +57,6 @@ SolarWatch now utilizes a PostgreSQL database for storing city coordinates and s
 
 ## Acknowledgments
 
-This project was developed as part of a learning experience. Special thanks to [OpenWeather](https://openweathermap.org/) for providing the Sunrise/Sunset API and Geocoding API.
+This project was developed as part of a learning experience. Special thanks to [SunriseSunset](https://sunrisesunset.io/api/) for the Sunrise/Sunset API and to [OpenWeather](https://openweathermap.org/) for providing the Geocoding API.
 
 ---
