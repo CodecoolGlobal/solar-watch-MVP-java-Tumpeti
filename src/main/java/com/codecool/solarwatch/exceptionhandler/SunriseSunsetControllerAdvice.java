@@ -1,4 +1,4 @@
-package com.codecool.solarwatch.controller;
+package com.codecool.solarwatch.exceptionhandler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

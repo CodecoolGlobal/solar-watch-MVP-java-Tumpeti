@@ -1,6 +1,10 @@
 package com.codecool.solarwatch.service;
 
-import com.codecool.solarwatch.controller.InvalidCityNameException;
+import com.codecool.solarwatch.dto.CityDTO;
+import com.codecool.solarwatch.dto.SunriseSunsetDTO;
+import com.codecool.solarwatch.dto.SunriseSunsetReportDTO;
+import com.codecool.solarwatch.dto.SunriseSunsetResultDTO;
+import com.codecool.solarwatch.exceptionhandler.InvalidCityNameException;
 import com.codecool.solarwatch.model.*;
 import com.codecool.solarwatch.repository.CityRepository;
 import com.codecool.solarwatch.repository.SunriseSunsetRepository;
@@ -48,7 +52,7 @@ public class SunriseSunsetService {
             return new SunriseSunsetReportDTO(city.getName(), requestedSunriseSunset.getDate(), requestedSunriseSunset.getSunrise(), requestedSunriseSunset.getSunset());
         }
 
-        SunriseSunsetResult sunriseSunsetResult = fetchSunriseSunset(date, city);
+        SunriseSunsetResultDTO sunriseSunsetResult = fetchSunriseSunset(date, city);
         if (sunriseSunsetResult == null) {
             throw new NoSuchElementException(String.format("Sunrise and Sunset information for city %s not found.",cityName));
         }
@@ -58,15 +62,15 @@ public class SunriseSunsetService {
         return reportDTO;
     }
 
-    private City getRequestedCity(String city) {
+    private City getRequestedCity(String cityName) {
         City requestedCity;
-        Optional<City> requestedCityOpt = cityRepository.findByNameIgnoreCase(city);
+        Optional<City> requestedCityOpt = cityRepository.findByNameIgnoreCase(cityName);
         if (requestedCityOpt.isPresent()) {
-            logger.info("Requested City found in database: {}", city);
+            logger.info("Requested City found in database: {}", cityName);
             requestedCity = requestedCityOpt.get();
         } else {
-            logger.info("Requested City NOT found in database: {}", city);
-            CityDTO cityDTO = fetchCity(city);
+            logger.info("Requested City NOT found in database: {}", cityName);
+            CityDTO cityDTO = fetchCity(cityName);
             requestedCity = saveFetchedCity(cityDTO);
         }
         return requestedCity;
@@ -89,14 +93,14 @@ public class SunriseSunsetService {
         return cities[mostAccurateResultIndex];
     }
 
-    private SunriseSunsetResult fetchSunriseSunset(LocalDate date, City city) {
+    private SunriseSunsetResultDTO fetchSunriseSunset(LocalDate date, City city) {
         logger.info("Requested City sunrise and sunset information NOT found in database, fetching...");
         String sunriseSunsetApiUrl = getSunriseSunsetApiUrl(city.getLatitude(), city.getLongitude(), date);
         return webClient
                 .get()
                 .uri(sunriseSunsetApiUrl)
                 .retrieve()
-                .bodyToMono(SunriseSunsetResult.class)
+                .bodyToMono(SunriseSunsetResultDTO.class)
                 .block();
     }
 

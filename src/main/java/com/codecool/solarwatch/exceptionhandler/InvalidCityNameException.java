@@ -1,4 +1,4 @@
-package com.codecool.solarwatch.controller;
+package com.codecool.solarwatch.exceptionhandler;
 
 public class InvalidCityNameException extends RuntimeException {
 

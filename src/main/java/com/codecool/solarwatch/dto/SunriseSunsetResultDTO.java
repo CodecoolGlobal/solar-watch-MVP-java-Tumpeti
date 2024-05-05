@@ -1,8 +1,8 @@
-package com.codecool.solarwatch.model;
+package com.codecool.solarwatch.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record SunriseSunsetResult(SunriseSunsetDTO results) {
+public record SunriseSunsetResultDTO(SunriseSunsetDTO results) {
 }

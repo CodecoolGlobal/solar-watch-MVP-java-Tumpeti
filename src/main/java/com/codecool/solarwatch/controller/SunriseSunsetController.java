@@ -1,6 +1,6 @@
 package com.codecool.solarwatch.controller;
 
-import com.codecool.solarwatch.model.SunriseSunsetReportDTO;
+import com.codecool.solarwatch.dto.SunriseSunsetReportDTO;
 import com.codecool.solarwatch.service.SunriseSunsetService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
