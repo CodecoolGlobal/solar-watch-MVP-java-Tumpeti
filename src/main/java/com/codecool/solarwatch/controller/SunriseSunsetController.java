@@ -1,6 +1,6 @@
 package com.codecool.solarwatch.controller;
 
-import com.codecool.solarwatch.model.SunriseSunsetDTO;
+import com.codecool.solarwatch.model.SunriseSunsetReportDTO;
 import com.codecool.solarwatch.service.SunriseSunsetService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -22,16 +22,12 @@ public class SunriseSunsetController {
     }
 
     @GetMapping("/sunrisesunset")
-    public SunriseSunsetDTO getSunriseAndSunset(@RequestParam String city, @RequestParam(required = false, defaultValue = "today") String date) {
+    public SunriseSunsetReportDTO getSunriseAndSunset(@RequestParam String city, @RequestParam(required = false, defaultValue = "today") String date) {
         if (date.equals("today")) {
             date = LocalDate.now().toString();
         }
-        return sunriseSunsetService.getSunriseSunset(city, LocalDate.parse(date));
-//        } catch (InvalidCityNameException exception) {
-//            return exception.getMessage();
-//        } catch (DateTimeException exception) {
-//            logger.info("Invalid date format");
-//            return ResponseEntity.badRequest().body("Bad Date Time Format");
-
+        SunriseSunsetReportDTO sunriseSunsetReport = sunriseSunsetService.getSunriseSunset(city, LocalDate.parse(date));
+        logger.info("Sunset Sunrise for requested City: {}", sunriseSunsetReport);
+        return sunriseSunsetReport;
     }
 }

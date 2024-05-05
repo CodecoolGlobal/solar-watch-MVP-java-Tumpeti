@@ -19,8 +19,7 @@ public class City {
     public City() {
     }
 
-    public City(long id, String name, double latitude, double longitude, String country, String state) {
-        this.id = id;
+    public City(String name, double latitude, double longitude, String country, String state) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;

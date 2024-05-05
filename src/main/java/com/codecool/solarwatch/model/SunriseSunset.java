@@ -20,6 +20,15 @@ public class SunriseSunset {
     @ManyToOne
     private City city;
 
+    public SunriseSunset() {
+    }
+
+    public SunriseSunset(LocalDate date, String sunrise, String sunset, City city) {
+        this.date = date;
+        this.sunrise = sunrise;
+        this.sunset = sunset;
+        this.city = city;
+    }
 
     public long getId() {
         return id;
