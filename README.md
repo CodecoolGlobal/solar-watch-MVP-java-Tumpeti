@@ -42,7 +42,7 @@ Welcome to SolarWatch, a Spring Boot Web API project that provides sunrise and s
 4. Run the application:
 
    ```bash
-   java -jar target/solar-watch.jar
+   java -jar target/solar-watch-MVP-java-Tumpeti.jar
    ```
 
 ### Usage
