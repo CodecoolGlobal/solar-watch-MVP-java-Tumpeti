@@ -30,7 +30,7 @@ Welcome to SolarWatch, a Spring Boot Web API project that provides sunrise and s
 2. Navigate to the project directory:
 
    ```bash
-   cd solar-watch
+   cd solar-watch-MVP-java-Tumpeti
    ```
 
 3. Build the project using Maven:
